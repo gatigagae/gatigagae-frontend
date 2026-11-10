@@ -16,6 +16,9 @@
 
     <!-- 인터넷: 나중에 준석님 서버(장소 검색 API) 호출용 -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 위치: 장소 검색 기준점 (권한이 없으면 기본 위치로 검색해요) -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <!-- Pleos Vehicle SDK -->
     <uses-permission android:name="pleos.car.permission.CAR_DOORS" />

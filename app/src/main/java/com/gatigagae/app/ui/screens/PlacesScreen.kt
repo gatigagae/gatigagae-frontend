@@ -72,6 +72,7 @@ fun PlacesScreen(
     onMore: () -> Unit,
     onSpeakAgain: () -> Unit,
     onCall: (Place) -> Unit = {},
+    loading: Boolean = false, // 서버에서 찾는 중
 ) {
     BoxWithConstraints(
         modifier = Modifier
@@ -112,6 +113,7 @@ fun PlacesScreen(
                 onMore = onMore,
                 onSpeakAgain = onSpeakAgain,
                 onCall = onCall,
+                loading = loading,
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight(),
@@ -140,6 +142,7 @@ private fun PlaceList(
     onMore: () -> Unit,
     onSpeakAgain: () -> Unit,
     onCall: (Place) -> Unit,
+    loading: Boolean,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier.padding(start = 34.dp, end = 34.dp, top = 60.dp, bottom = 25.dp)) {
@@ -184,7 +187,16 @@ private fun PlaceList(
         Spacer(Modifier.height(41.dp))
 
         // ── 장소 카드 3장 (S3-03) / 결과 없음 (S3-08) ──
-        if (places.isEmpty()) {
+        if (loading) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
+                contentAlignment = Alignment.Center,
+            ) {
+                Text("${TextUtils.withRang(dogName)} 갈 수 있는 곳을 찾는 중…", color = GgTextSecondary, fontSize = 28.sp)
+            }
+        } else if (places.isEmpty()) {
             EmptyResult(
                 onBackToMain = onBack,
                 modifier = Modifier

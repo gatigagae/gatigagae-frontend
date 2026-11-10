@@ -38,6 +38,7 @@ data class Place(
     val address: String,
     val petStatus: PetStatus,
     val petSummary: String, // 동반 조건 한 줄. 예: "소형견 · 실내 동반 · 목줄 필수"
+    val phone: String? = null, // 전화번호 (없으면 null)
 )
 
 /** 내비 목적지 동반 여부 판정 결과 (S5) */

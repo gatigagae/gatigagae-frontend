@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.gatigagae.app.sdk.CarLocation
 import com.gatigagae.app.sdk.NaviController
 import com.gatigagae.app.sdk.VoiceController
 import com.gatigagae.app.ui.theme.GatigagaeTheme
@@ -19,6 +20,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         voice = VoiceController(this).also { it.start() }
         navi = NaviController(this).also { it.connect() }
+        // 장소 검색 기준 위치 권한 (처음 한 번만 물어봐요. 거절해도 기본 위치로 검색돼요)
+        if (!CarLocation.hasPermission(this)) {
+            requestPermissions(CarLocation.permissions, 1)
+        }
         setContent {
             GatigagaeTheme {
                 GatigagaeApp(voice = voice, navi = navi)

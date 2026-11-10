@@ -2,6 +2,7 @@ package com.gatigagae.app
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,6 +20,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,7 +30,9 @@ import com.gatigagae.app.data.DogProfile
 import com.gatigagae.app.data.FakeData
 import com.gatigagae.app.data.Gear
 import com.gatigagae.app.data.Place
+import com.gatigagae.app.data.PlaceApi
 import com.gatigagae.app.data.TextUtils
+import com.gatigagae.app.sdk.CarLocation
 import com.gatigagae.app.sdk.NaviController
 import com.gatigagae.app.sdk.VoiceController
 import com.gatigagae.app.ui.DevPanel
@@ -42,6 +46,7 @@ import com.gatigagae.app.ui.screens.ProfileScreen
 import com.gatigagae.app.ui.screens.VoiceSheet
 import com.gatigagae.app.ui.theme.GgBackground
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 /** 시연 영상 찍을 때 false로 바꾸면 개발용 패널이 사라져요 */
 const val SHOW_DEV_PANEL = true
@@ -86,6 +91,10 @@ fun GatigagaeApp(
     var category by remember { mutableStateOf("카페") }
     var page by remember { mutableIntStateOf(0) }
     var places by remember { mutableStateOf<List<Place>>(emptyList()) }
+    var searchText by remember { mutableStateOf("") }    // 서버에 보낸 문장 (재탐색 때 같은 문장 + 다음 page)
+    var hasNext by remember { mutableStateOf(false) }
+    var loading by remember { mutableStateOf(false) }
+    val scope = rememberCoroutineScope()
 
     // ── 목적지 ──
     var hasActiveRoute by remember { mutableStateOf(false) }
@@ -110,11 +119,36 @@ fun GatigagaeApp(
         showVoiceSheet = true
     }
 
-    fun showPlaces(newCategory: String) {
+    // 준석님 서버에서 장소 찾기 (S3). 서버가 안 되면 예시 장소로 대신 보여줘요.
+    fun searchPlaces(newPage: Int) {
+        scope.launch {
+            loading = true
+            val (lat, lng) = CarLocation.current(context)
+            try {
+                val result = PlaceApi.search(searchText, lat, lng, page = newPage)
+                result.category?.let { category = it }
+                places = result.places
+                hasNext = result.hasNext
+                page = newPage
+            } catch (e: Exception) {
+                Log.e("PlaceApi", "장소 검색 실패", e)
+                toast("서버에 연결하지 못해서 예시 장소를 보여줘요")
+                places = FakeData.places(category, newPage)
+                hasNext = FakeData.places(category, newPage + 1).isNotEmpty()
+                page = newPage
+            }
+            loading = false
+        }
+    }
+
+    // text: 서버에 보낼 문장. 종류(카페 등)를 앞에 붙여서 서버가 확실히 알아듣게 해요.
+    fun showPlaces(newCategory: String, text: String = "근처 $newCategory 찾아줘") {
         category = newCategory
-        page = 0
-        places = FakeData.places(newCategory, 0) // TODO(서버): 준석님 장소 검색 API로 교체
+        searchText = if (text.contains(newCategory)) text else "$newCategory $text"
+        places = emptyList()
+        hasNext = false
         screen = Screen.PLACES
+        searchPlaces(0)
     }
 
     // S4 목적지 설정 → 차량 내비 길안내 (poiId 없이 좌표로, A-1에서 확인)
@@ -194,6 +228,7 @@ fun GatigagaeApp(
                 dogName = dogName,
                 category = category,
                 places = places,
+                loading = loading,
                 gear = gear,
                 onBack = { screen = Screen.MAIN },
                 onNavigate = { place ->
@@ -201,16 +236,14 @@ fun GatigagaeApp(
                     if (hasActiveRoute) placeToConfirm = place else startRoute(place)
                 },
                 onMore = {
-                    val next = FakeData.places(category, page + 1)
-                    if (next.isEmpty()) {
-                        toast("더 찾으려면 반경을 넓혀야 해요")
-                    } else {
-                        page += 1
-                        places = next
-                    }
+                    // 재탐색 = 같은 문장으로 다음 page
+                    if (loading) return@PlacesScreen
+                    if (hasNext) searchPlaces(page + 1) else toast("근처에 다른 장소가 없어요")
                 },
                 onSpeakAgain = { openVoice(null) },
-                onCall = { place -> toast("${place.name} 전화 연결은 12/3 범위예요") },
+                onCall = { place ->
+                    toast(place.phone?.let { "${place.name} 전화번호: $it (전화 연결은 12/3 범위)" } ?: "전화번호 정보가 없어요")
+                },
             )
 
             Screen.DESTINATION_CHECK -> {
@@ -254,7 +287,7 @@ fun GatigagaeApp(
                     when (request.category) {
                         "휴게소" -> toast("S6 휴게소 권고는 12/3 범위예요")
                         "동물병원" -> toast("S8 응급 동물병원은 12/3 범위예요")
-                        else -> showPlaces(request.category ?: "카페")
+                        else -> showPlaces(request.category ?: "카페", request.text)
                     }
                 },
             )
