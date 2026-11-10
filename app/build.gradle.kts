@@ -52,5 +52,9 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation(libs.androidx.compose.ui.tooling)
+    // Pleos SDK (버전은 각 SDK 문서의 Project Setup 페이지 기준)
     implementation("ai.pleos.playground:Vehicle:2.3.2")
+    implementation("ai.pleos.playground:NaviHelper:3.0.5")
+    implementation("ai.pleos.playground:TextToSpeech:3.3.1")
+    implementation("ai.pleos.playground:SpeechToText:3.3.1")
 }

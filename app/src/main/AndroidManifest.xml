@@ -2,7 +2,36 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- 차량용 앱이라는 표시 -->
+    <uses-feature
+        android:name="android.hardware.type.automotive"
+        android:required="true" />
+    <!-- 가로·세로(분할 화면) 둘 다 쓸 수 있다는 표시 -->
+    <uses-feature
+        android:name="android.hardware.screen.portrait"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.screen.landscape"
+        android:required="false" />
+
+    <!-- 인터넷: 나중에 준석님 서버(장소 검색 API) 호출용 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Pleos Vehicle SDK -->
     <uses-permission android:name="pleos.car.permission.CAR_DOORS" />
+
+    <!-- Pleos NaviHelper SDK -->
+    <!-- getDestinationInfo 같은 내비 정보 조회 -->
+    <uses-permission android:name="pleos.car.permission.NAVI_ROUTE" />
+    <!-- requestRoute (길안내 요청) -->
+    <uses-permission android:name="pleos.car.permission.NAVI_ROUTE_SEARCH" />
+    <!-- requestNavigationScreen (내비 검색 화면 열기) -->
+    <uses-permission android:name="pleos.car.permission.NAVI_CUSTOM_MAP" />
+
+    <!-- Pleos TextToSpeech / SpeechToText SDK -->
+    <uses-permission android:name="pleos.car.permission.TTS_SERVICE" />
+    <uses-permission android:name="pleos.car.permission.STT_SERVICE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,12 +41,47 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Gatigagae">
+
+        <!-- 실제 앱 -->
+        <!-- resizeableActivity + configChanges: 내비와 분할 화면이 될 때 앱이 다시 시작되지 않게 (A-2) -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
+            android:resizeableActivity="true"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|density|uiMode|keyboard|keyboardHidden|navigation"
             android:label="@string/app_name"
             android:theme="@style/Theme.Gatigagae"
             android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 음성 테스트 화면 (테스트 끝나면 지워도 돼요) -->
+        <activity
+            android:name=".voicetest.VoiceTestActivity"
+            android:exported="true"
+            android:label="음성 테스트"
+            android:resizeableActivity="true"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|density|uiMode|keyboard|keyboardHidden|navigation"
+            android:theme="@style/Theme.Gatigagae">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- poiId 테스트 화면 (테스트 끝나면 지워도 돼요) -->
+        <activity
+            android:name=".navitest.NaviTestActivity"
+            android:exported="true"
+            android:label="poiId 테스트"
+            android:resizeableActivity="true"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|density|uiMode|keyboard|keyboardHidden|navigation"
+            android:theme="@style/Theme.Gatigagae">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
