@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Figma 디자인 (ic_phone) 에서 가져온 그림 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path
+        android:pathData="M40.02 30.76C37.56 30.76 35.18 30.36 32.96 29.64C32.61 29.52 32.24 29.5 31.88 29.59C31.52 29.67 31.2 29.86 30.94 30.12L27.8 34.06C22.14 31.36 16.84 26.26 14.02 20.4L17.92 17.08C18.46 16.52 18.62 15.74 18.4 15.04C17.66 12.82 17.28 10.44 17.28 7.98C17.28 6.9 16.38 6 15.3 6H8.38C7.3 6 6 6.48 6 7.98C6 26.56 21.46 42 40.02 42C41.44 42 42 40.74 42 39.64V32.74C42 31.66 41.1 30.76 40.02 30.76Z"
+        android:fillColor="#131417" />
+</vector>

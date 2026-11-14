@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Figma 디자인 (map_my_location) 에서 가져온 그림 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="72dp"
+    android:height="72dp"
+    android:viewportWidth="72"
+    android:viewportHeight="72">
+    <path
+        android:pathData="M0,36a36,36 0 1,0 72,0a36,36 0 1,0 -72,0Z"
+        android:fillColor="#2E1F00"
+        android:fillAlpha="0.12" />
+    <path
+        android:pathData="M24.5,36a11.5,11.5 0 1,0 23,0a11.5,11.5 0 1,0 -23,0Z"
+        android:fillColor="#2E1F00"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="5" />
+</vector>

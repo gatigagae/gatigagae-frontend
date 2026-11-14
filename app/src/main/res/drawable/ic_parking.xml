@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Figma 디자인 (ic_parking) 에서 가져온 그림 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path
+        android:pathData="M14 6H34C36.12 6 38.16 6.84 39.66 8.34C41.16 9.84 42 11.88 42 14V34C42 36.12 41.16 38.16 39.66 39.66C38.16 41.16 36.12 42 34 42H14C11.88 42 9.84 41.16 8.34 39.66C6.84 38.16 6 36.12 6 34V14C6 11.88 6.84 9.84 8.34 8.34C9.84 6.84 11.88 6 14 6ZM16.5 14H24.5C26.49 14 28.4 14.79 29.8 16.2C31.21 17.6 32 19.51 32 21.5C32 23.49 31.21 25.4 29.8 26.8C28.4 28.21 26.49 29 24.5 29H20.9V35H16.5V14ZM20.9 18V25H24.5C25.43 25 26.32 24.63 26.97 23.97C27.63 23.32 28 22.43 28 21.5C28 20.57 27.63 19.68 26.97 19.03C26.32 18.37 25.43 18 24.5 18H20.9Z"
+        android:fillColor="#131417"
+        android:fillType="evenOdd" />
+</vector>
