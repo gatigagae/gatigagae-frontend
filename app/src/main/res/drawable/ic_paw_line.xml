@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Figma 디자인 (ic_paw_line) 에서 가져온 그림 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path
+        android:pathData="M14.4 18.74C15.23 21.02 14.47 23.39 12.7 24.03C10.94 24.68 8.84 23.35 8.01 21.06C7.17 18.78 7.93 16.41 9.7 15.77C11.46 15.12 13.56 16.45 14.4 18.74Z"
+        android:strokeColor="#131417"
+        android:strokeWidth="3.6"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M21.97 10.93C22.32 13.44 21.1 15.69 19.24 15.96C17.38 16.22 15.59 14.39 15.23 11.87C14.88 9.36 16.1 7.11 17.96 6.84C19.82 6.58 21.61 8.41 21.97 10.93Z"
+        android:strokeColor="#131417"
+        android:strokeWidth="3.6"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M32.77 11.87C32.41 14.39 30.62 16.22 28.76 15.96C26.9 15.69 25.68 13.44 26.03 10.93C26.39 8.41 28.18 6.58 30.04 6.84C31.9 7.11 33.12 9.36 32.77 11.87Z"
+        android:strokeColor="#131417"
+        android:strokeWidth="3.6"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M39.99 21.06C39.16 23.35 37.06 24.68 35.3 24.03C33.53 23.39 32.77 21.02 33.6 18.74C34.44 16.45 36.54 15.12 38.3 15.77C40.07 16.41 40.83 18.78 39.99 21.06Z"
+        android:strokeColor="#131417"
+        android:strokeWidth="3.6"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M24 24.9C20 24.9 17.4 28 15.4 31C13.6 33.6 11.8 34.9 11.8 37.3C11.8 39.8 13.8 41.2 16.2 41.2C18.9 41.2 20.9 40 24 40C27.1 40 29.1 41.2 31.8 41.2C34.2 41.2 36.2 39.8 36.2 37.3C36.2 34.9 34.4 33.6 32.6 31C30.6 28 28 24.9 24 24.9Z"
+        android:strokeColor="#131417"
+        android:strokeWidth="3.6"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

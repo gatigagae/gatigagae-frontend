@@ -57,4 +57,6 @@ dependencies {
     implementation("ai.pleos.playground:NaviHelper:3.0.5")
     implementation("ai.pleos.playground:TextToSpeech:3.3.1")
     implementation("ai.pleos.playground:SpeechToText:3.3.1")
+    // QR 코드 그리기 (프로필 입력 QR)
+    implementation("com.google.zxing:core:3.5.3")
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Figma 디자인 (ic_temp) 에서 가져온 그림 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path
+        android:pathData="M27.5 30.1V14.3C27.5 13.37 27.13 12.48 26.47 11.83C25.82 11.17 24.93 10.8 24 10.8C23.07 10.8 22.18 11.17 21.53 11.83C20.87 12.48 20.5 13.37 20.5 14.3V30.1C19.02 30.88 17.84 32.14 17.16 33.67C16.47 35.2 16.32 36.91 16.72 38.54C17.12 40.16 18.06 41.61 19.38 42.64C20.7 43.67 22.32 44.23 24 44.23C25.68 44.23 27.3 43.67 28.62 42.64C29.94 41.61 30.88 40.16 31.28 38.54C31.68 36.91 31.53 35.2 30.84 33.67C30.16 32.14 28.98 30.88 27.5 30.1Z"
+        android:strokeColor="#131417"
+        android:strokeWidth="3.6"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

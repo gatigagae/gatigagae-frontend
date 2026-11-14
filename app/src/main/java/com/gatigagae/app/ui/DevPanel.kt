@@ -3,6 +3,8 @@ package com.gatigagae.app.ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -42,9 +44,24 @@ fun DevPanel(
     onOpenVoiceTest: () -> Unit,
     onShowVoiceFail: () -> Unit,
     onShowEmptyPlaces: () -> Unit,
+    onUseFakeProfile: () -> Unit,
+    onShowGetOff: () -> Unit,
+    onArrive: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     var open by remember { mutableStateOf(false) }
+    var hidden by remember { mutableStateOf(false) } // 시연 녹화용: 패널이 안 보이게
+
+    if (hidden) {
+        // 같은 자리에 안 보이는 버튼만 남겨요. 그 자리(왼쪽 가운데)를 누르면 다시 나와요.
+        Box(
+            modifier = modifier
+                .padding(12.dp)
+                .size(96.dp)
+                .clickable { hidden = false },
+        )
+        return
+    }
 
     Column(
         modifier = modifier.padding(12.dp),
@@ -67,14 +84,18 @@ fun DevPanel(
                     .padding(12.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
+                DevButton("🎬 녹화용으로 숨기기 (같은 자리를 누르면 다시 나와요)", { open = false; hidden = true })
                 DevButton("기어 바꾸기 (지금 ${gear.name} → ${if (gear == Gear.P) "D" else "P"})", onToggleGear)
                 DevButton("연속 주행 시간 +30분", onAddDriving)
                 DevButton("S1 탑승 팝업 다시 띄우기", onShowBoarding)
-                DevButton("프로필 지우기 (등록 흐름 확인)", onClearProfile)
+                DevButton("🔄 처음부터 다시 (프로필 지우기 + 탑승 팝업)", onClearProfile)
+                DevButton("가짜 프로필(콩이) 넣기", onUseFakeProfile)
                 DevButton("S5: 목적지 = 동반 가능", { onSimulateDestination(0) })
                 DevButton("S5: 목적지 = 정보 없음", { onSimulateDestination(1) })
                 DevButton("S5: 목적지 = 동반 불가", { onSimulateDestination(2) })
                 DevButton("음성 시트: 인식 실패 화면 보기", onShowVoiceFail)
+                DevButton("🏁 목적지 도착 신호 (→ 기어 P로 바꾸면 하차 확인)", onArrive)
+                DevButton("S7: 하차 확인 팝업 바로 보기", onShowGetOff)
                 DevButton("S3: 검색 결과 없음 화면 보기", onShowEmptyPlaces)
                 DevButton("🧭 poiId 테스트 화면 열기", onOpenNaviTest)
                 DevButton("🎙 음성 테스트 화면 열기", onOpenVoiceTest)

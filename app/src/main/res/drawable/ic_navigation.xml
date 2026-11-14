@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Figma 디자인 (ic_navigation) 에서 가져온 그림 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path
+        android:pathData="M24 6L39 40.5L24 33L9 40.5L24 6Z"
+        android:fillColor="#131417"
+        android:strokeColor="#131417"
+        android:strokeWidth="3"
+        android:strokeLineJoin="round" />
+</vector>

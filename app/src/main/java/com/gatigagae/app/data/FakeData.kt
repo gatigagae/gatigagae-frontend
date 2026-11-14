@@ -2,7 +2,7 @@ package com.gatigagae.app.data
 
 /**
  * 가짜 데이터. 화면을 먼저 만들 때 써요.
- * - 장소 목록 → 준석님 서버 API가 나오면 교체
+ * - 장소 목록 → 우리 백엔드 서버 API가 나오면 교체
  * - 실내 온도 → Vehicle SDK HVAC 값으로 교체
  * - 음성 문장 → STT 결과로 교체
  */
@@ -13,7 +13,7 @@ object FakeData {
         breed = "말티즈",
         age = "3살",
         note = "더위에 약해요",
-        preferredTemp = 23,
+        preferredTemp = 22, // 기획 표(11/14): 3살 말티즈 = 조건 없음 → 기본 22℃
     )
 
     const val INDOOR_TEMP = 26.5

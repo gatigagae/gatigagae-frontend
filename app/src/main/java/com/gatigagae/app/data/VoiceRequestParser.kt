@@ -40,8 +40,8 @@ object VoiceRequestParser {
     }
 
     // 예/아니오 대답 (S1 탑승 확인, S6 "휴게소 찾아드릴까요?")
-    private val declineWords = listOf("괜찮", "아니", "됐어", "필요 없", "필요없", "안 할", "안할", "나중에", "혼자")
-    private val acceptWords = listOf("응", "네", "예", "좋아", "그래", "찾아줘", "같이", "부탁")
+    private val declineWords = listOf("괜찮", "아니", "됐어", "필요 없", "필요없", "안 할", "안할", "나중에", "혼자", "안 내", "안내렸", "못 데려", "깜빡", "다른 곳", "다른곳")
+    private val acceptWords = listOf("응", "네", "예", "좋아", "그래", "찾아줘", "같이", "부탁", "내렸", "데려갔", "데리고 내", "가자", "출발", "안내해", "안내 시작")
 
     /** "카페에 곧 도착하니 괜찮아" → true. 거절 단어를 먼저 봐요 ("아니 괜찮아"도 거절) */
     fun isDecline(text: String): Boolean = declineWords.any { text.contains(it) }

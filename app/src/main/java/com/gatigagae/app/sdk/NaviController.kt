@@ -34,6 +34,8 @@ class NaviController(context: Context) {
 
     var onRouteActiveChanged: ((Boolean) -> Unit)? = null
     var onDestination: ((DestinationInfo) -> Unit)? = null
+    /** 목적지에 도착했을 때 (S7 하차 확인) */
+    var onArrived: (() -> Unit)? = null
 
     /** 앱 시작할 때 한 번. 실패하면 길안내를 누를 때 다시 시도해요 */
     fun connect() {
@@ -130,6 +132,7 @@ class NaviController(context: Context) {
         override fun onDestinationArrived(destinationArrivedInfo: DestinationArrivedInfo) {
             log("목적지 도착")
             routeActive(false)
+            handler.post { onArrived?.invoke() }
         }
         override fun onError(errorCode: NaviErrorCode) {
             log("내비 오류: ${errorCode.name}")

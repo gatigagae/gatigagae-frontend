@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Figma 디자인 (map_illust) 에서 가져온 그림 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="914dp"
+    android:height="878dp"
+    android:viewportWidth="914"
+    android:viewportHeight="878">
+    <path
+        android:pathData="M914 0H0V878H914V0Z"
+        android:fillColor="#EEF0F2" />
+    <path
+        android:pathData="M305.04 509.24H78.84C65.59 509.24 54.84 519.99 54.84 533.24V748.64C54.84 761.9 65.59 772.64 78.84 772.64H305.04C318.3 772.64 329.04 761.9 329.04 748.64V533.24C329.04 519.99 318.3 509.24 305.04 509.24Z"
+        android:fillColor="#DCEFD6" />
+    <path
+        android:pathData="M566.68 878C639.8 702.4 786.04 755.08 914 614.6V878H566.68Z"
+        android:fillColor="#D4E7F5" />
+    <path
+        android:pathData="M0 298.52H914"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="26" />
+    <path
+        android:pathData="M548.4 0V878"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="26" />
+    <path
+        android:pathData="M0 702.4L914 403.88"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="26" />
+    <path
+        android:pathData="M228.5 0V878"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="12" />
+    <path
+        android:pathData="M776.9 0V878"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="12" />
+    <path
+        android:pathData="M0 105.36H914"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="12" />
+    <path
+        android:pathData="M0 544.36H548.4"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="12" />
+</vector>

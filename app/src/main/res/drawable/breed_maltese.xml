@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Figma 디자인 (breed_maltese) 에서 가져온 그림 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+    <path
+        android:pathData="M100 200C155.23 200 200 155.23 200 100C200 44.77 155.23 0 100 0C44.77 0 0 44.77 0 100C0 155.23 44.77 200 100 200Z"
+        android:fillColor="#FCE4EC" />
+    <path
+        android:pathData="M37.79 141.75C48.29 145.16 63.17 128.34 71.02 104.18C78.87 80.02 76.72 57.66 66.21 54.25C55.71 50.84 40.83 67.66 32.98 91.82C25.13 115.98 27.28 138.34 37.79 141.75Z"
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#EBD3A0"
+        android:strokeWidth="3" />
+    <path
+        android:pathData="M162.22 141.75C172.72 138.34 174.87 115.98 167.02 91.82C159.17 67.66 144.29 50.84 133.79 54.25C123.28 57.66 121.13 80.02 128.98 104.18C136.83 128.34 151.71 145.16 162.22 141.75Z"
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#EBD3A0"
+        android:strokeWidth="3" />
+    <path
+        android:pathData="M100 162C129.82 162 154 137.82 154 108C154 78.18 129.82 54 100 54C70.18 54 46 78.18 46 108C46 137.82 70.18 162 100 162Z"
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#EBD3A0"
+        android:strokeWidth="3" />
+    <path
+        android:pathData="M100 58L84 48V68L100 58Z"
+        android:fillColor="#CC8400" />
+    <path
+        android:pathData="M100 58L116 48V68L100 58Z"
+        android:fillColor="#CC8400" />
+    <path
+        android:pathData="M100 64C103.31 64 106 61.31 106 58C106 54.69 103.31 52 100 52C96.69 52 94 54.69 94 58C94 61.31 96.69 64 100 64Z"
+        android:fillColor="#B37200" />
+    <path
+        android:pathData="M82 110.5C85.59 110.5 88.5 107.59 88.5 104C88.5 100.41 85.59 97.5 82 97.5C78.41 97.5 75.5 100.41 75.5 104C75.5 107.59 78.41 110.5 82 110.5Z"
+        android:fillColor="#2E1E00" />
+    <path
+        android:pathData="M118 110.5C121.59 110.5 124.5 107.59 124.5 104C124.5 100.41 121.59 97.5 118 97.5C114.41 97.5 111.5 100.41 111.5 104C111.5 107.59 114.41 110.5 118 110.5Z"
+        android:fillColor="#2E1E00" />
+    <path
+        android:pathData="M100 129C105.52 129 110 125.87 110 122C110 118.13 105.52 115 100 115C94.48 115 90 118.13 90 122C90 125.87 94.48 129 100 129Z"
+        android:fillColor="#2E1E00" />
+    <path
+        android:pathData="M100 129V135M92 138C96 142 104 142 108 138"
+        android:strokeColor="#2E1E00"
+        android:strokeWidth="3"
+        android:strokeLineCap="round" />
+</vector>
