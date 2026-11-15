@@ -94,6 +94,9 @@ object PlaceApi {
                 petStatus = PetStatus.CONFIRMED,
                 petSummary = conditions.joinToString(" · "),
                 phone = if (p.isNull("tel")) null else p.optString("tel").ifBlank { null },
+                // 11/15 서버: 검색 결과에도 allowedSize·restrictions가 와요 (기획: 검색 결과 카드에 칩 표시)
+                sizeLabel = if (p.isNull("allowedSize")) null else p.optString("allowedSize").ifBlank { null }?.let { sizeToKorean(it) },
+                rules = rulesOf(p),
             )
         }
         // 기획 결정: "보조견만 가능" 장소 제외 (서버가 거르지만 예전 응답 대비 앱에서도 한 번 더)
@@ -133,8 +136,7 @@ object PlaceApi {
         fun str(key: String): String? = if (r.isNull(key)) null else r.optString(key).ifBlank { null }
         // 11/15 서버 코드화: allowedSize = ALL / SMALL_MEDIUM / SMALL, restrictions = ["LEASH", "MUZZLE", …]
         val size = str("allowedSize")?.let { sizeToKorean(it) }
-        val restrictionsJson = r.optJSONArray("restrictions")
-        val rules = (0 until (restrictionsJson?.length() ?: 0)).map { restrictionToKorean(restrictionsJson!!.getString(it)) }
+        val rules = rulesOf(r)
         val oldText = str("restriction") // 예전 글자 응답 대비
         val pet = (listOfNotNull(size) + rules + listOfNotNull(oldText)).joinToString(" · ")
         val hours = listOfNotNull(str("businessHours"), str("closedDays")?.let { "휴무 $it" }).joinToString(" · ")
@@ -145,7 +147,15 @@ object PlaceApi {
             petSummary = pet.ifBlank { place.petSummary },
             hours = hours.ifBlank { null },
             parking = if (r.isNull("parkingAvailable")) null else r.optBoolean("parkingAvailable", false),
+            sizeLabel = size ?: place.sizeLabel,
+            rules = rules.ifEmpty { place.rules },
         )
+    }
+
+    /** restrictions 배열 → 한글 목록 */
+    private fun rulesOf(obj: JSONObject): List<String> {
+        val arr = obj.optJSONArray("restrictions") ?: return emptyList()
+        return (0 until arr.length()).map { restrictionToKorean(arr.getString(it)) }
     }
 
     /** 함께 들어갈 수 있는 크기 코드 → 화면 글자 */

@@ -41,6 +41,8 @@ data class Place(
     val phone: String? = null, // 전화번호 (없으면 null)
     val hours: String? = null,      // 영업 시간 + 휴무일 (상세 API, 없으면 null)
     val parking: Boolean? = null,   // 주차 가능 여부 (상세 API, 없으면 null)
+    val sizeLabel: String? = null,       // 동반 가능 크기 ("크기 제한 없음" 등, 없으면 null)
+    val rules: List<String> = emptyList(), // 동반 조건 ("목줄", "입마개" …) → 칩
 )
 
 /** 내비 목적지 동반 여부 판정 결과 (S5) */
