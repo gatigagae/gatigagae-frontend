@@ -59,6 +59,7 @@ import com.gatigagae.app.ui.components.WhiteCard
 import com.gatigagae.app.ui.theme.BgPrimary
 import com.gatigagae.app.ui.theme.Divider10
 import com.gatigagae.app.ui.theme.GatigagaeTheme
+import com.gatigagae.app.ui.theme.ChipGray
 import com.gatigagae.app.ui.theme.Gold100
 import com.gatigagae.app.ui.theme.Gold500
 import com.gatigagae.app.ui.theme.Gold700
@@ -310,6 +311,7 @@ private fun PlaceCard(number: Int, place: Place, portrait: Boolean, onNavigate: 
             Text(place.name, color = Gold900, fontSize = 32.sp, lineHeight = 40.sp, fontWeight = FontWeight.Bold, maxLines = 1, overflow = TextOverflow.Ellipsis)
             Text(subLine(place), color = TextSecondary, fontSize = 26.sp, lineHeight = 34.sp, maxLines = 1)
             PawBadge()
+            ConditionChips(place, max = 2)
         }
         GoldButton("안내 시작", onClick = { onNavigate(place) }, large = true, modifier = Modifier.widthIn(min = 198.dp)) // → S4 (글자가 잘리지 않게 최소 198)
     }
@@ -332,6 +334,38 @@ private fun subLine(place: Place, approx: Boolean = false): String {
     return "${place.category} · ${TextUtils.distance(place.distanceM)} · ${if (approx) "약 " else ""}${minutes}분"
 }
 
+/**
+ * 반려견 동반 조건 칩 (기획 11/15: 검색 결과에도 표시, 정보 없으면 "정보 없음")
+ * 크기 칩 + 조건 칩. 운전 중 보는 정보라 카드에서는 앞의 몇 개만, 나머지는 "+N"
+ * 정식 칩 디자인이 나오면 모양만 바꾸면 돼요.
+ */
+@Composable
+private fun ConditionChips(place: Place, max: Int = Int.MAX_VALUE) {
+    val all = listOfNotNull(place.sizeLabel) + place.rules
+    val items = if (all.isEmpty()) listOf("정보 없음") else all
+    val shown = items.take(max)
+    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        shown.forEach { InfoChip(it) }
+        if (items.size > shown.size) InfoChip("+${items.size - shown.size}")
+    }
+}
+
+@Composable
+private fun InfoChip(text: String) {
+    Text(
+        text,
+        color = TextSecondary,
+        fontSize = 22.sp,
+        lineHeight = 28.sp,
+        fontWeight = FontWeight.Bold,
+        maxLines = 1,
+        modifier = Modifier
+            .clip(RoundedCornerShape(50))
+            .background(ChipGray)
+            .padding(horizontal = 16.dp, vertical = 6.dp),
+    )
+}
+
 // ───────────────────────── 장소 정보 ─────────────────────────
 
 /**
@@ -348,7 +382,9 @@ private fun PlaceDetail(place: Place, portrait: Boolean, onNavigate: (Place) -> 
             Text(subLine(place, approx = true), color = TextSecondary, fontSize = 26.sp, lineHeight = 34.sp)
             Spacer(Modifier.height(16.dp))
             PawBadge()
-            Spacer(Modifier.height(48.dp))
+            Spacer(Modifier.height(12.dp))
+            ConditionChips(place)
+            Spacer(Modifier.height(36.dp))
             Box(Modifier.fillMaxWidth().height(1.dp).background(Divider10))
             Spacer(Modifier.height(48.dp))
             Column(verticalArrangement = Arrangement.spacedBy(48.dp)) {
